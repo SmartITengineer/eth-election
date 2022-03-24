@@ -14,6 +14,12 @@ contract Election {
     mapping(uint => Candidate) public candidates;
     // Store Candidates Count
     uint public candidatesCount;
+    
+    // ... Events
+    event votedEvent(
+        uint indexed _candidateId
+    );
+    //  ...
 
     // Constructor
     constructor () public {
@@ -38,5 +44,8 @@ contract Election {
 
         // update candidate vote Count
         candidates[_candidateId].voteCount ++;
+
+        // trigger voted event
+        emit votedEvent(_candidateId);
     }
 }
